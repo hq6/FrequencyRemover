@@ -1,0 +1,4 @@
+Build infrastructure to negate more than one block of samples
+Test the two-tone test case to see if we can negate exactly one of the tones
+Build infrastructure to allow specification of ranges defined by fractional seconds
+Allow negating multiple frequencies as well as a radius around the frequencies
