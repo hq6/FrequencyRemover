@@ -34,11 +34,15 @@ for i, freq in enumerate(frequencies):
         freq_vectors[2*i] = 0
 
 # Reverse the FFT
-rfft = irfft(freq_vectors)
+updated_samples = irfft(freq_vectors)
 
 # Verify correctness.
-print len(rfft)
+print len(updated_samples)
 print len(samples)
-for x,y in zip(rfft, samples):
+for x,y in zip(updated_samples, samples):
     if abs(x - y) > 1e-3:
         print x,y
+
+# Write output
+data.T[S:S + N] = updated_samples
+wavfile.write("Output.wav", samples_per_second, data.T)
