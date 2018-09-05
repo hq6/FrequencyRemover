@@ -1,2 +1,5 @@
 # Generated test files and output files
 *.wav
+
+# Vim swap files
+.*.swp
