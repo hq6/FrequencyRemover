@@ -43,4 +43,4 @@ def removeFrequencies(infile, outfile, removedFrequencies = list(), S = 0, B = 1
     # Write output
     wavfile.write(outfile, R, data.T)
 
-removeFrequencies(argv[1], argv[2], [524.871826172], 32768, 10)
+removeFrequencies(argv[1], argv[2], [525], 32768, 10)
