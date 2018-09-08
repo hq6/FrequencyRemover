@@ -16,5 +16,6 @@ playTone() {
     play -n synth $length sin $frequency rate 44100
 }
 
-sox -n -b 16 SingleTone.wav synth 10 sin 525 rate 44100
-sox -m <(generateTone 523.25 10) <(generateTone 800 10) -b 16 DualTone.wav
+sox -n -b 16 Tone1.wav synth 10 sin 525 rate 44100
+sox -n -b 16 Tone2.wav synth 10 sin 800 rate 44100
+sox -m <(generateTone 525 10) <(generateTone 800 10) -b 16 DualTone.wav
