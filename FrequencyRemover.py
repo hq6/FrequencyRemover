@@ -16,29 +16,29 @@ def removeFrequencies(infile, outfile, removedFrequencies = list(), S = 0, B = 1
     fs, data = wavfile.read(infile)
 
     for i in range(B):
-	start_sample = S + i * N
-	end_sample = start_sample + N
-	samples = data.T[start_sample:end_sample]
+        start_sample = S + i * N
+        end_sample = start_sample + N
+        samples = data.T[start_sample:end_sample]
 
-	# FFT
-	freq_vectors = rfft(samples, N)
-	num_buckets = len(freq_vectors)/2 - 1
+        # FFT
+        freq_vectors = rfft(samples, N)
+        num_buckets = len(freq_vectors)/2 - 1
 
-	frequencies = [x*freq_resolution for x in xrange(num_buckets)]
+        frequencies = [x*freq_resolution for x in xrange(num_buckets)]
 
-	# Manipulate the fft
-	for i, freq in enumerate(frequencies):
+        # Manipulate the fft
+        for i, freq in enumerate(frequencies):
           for rf in removedFrequencies:
-	    if abs(freq - rf) < radius:
-		# This does't work if i == 0, but we ignore that case
-		freq_vectors[2*i-1] = 0
-		freq_vectors[2*i] = 0
+            if abs(freq - rf) < radius:
+              # This does't work if i == 0, but we ignore that case
+              freq_vectors[2*i-1] = 0
+              freq_vectors[2*i] = 0
 
-	# Reverse the FFT
-	updated_samples = irfft(freq_vectors)
+        # Reverse the FFT
+        updated_samples = irfft(freq_vectors)
 
-	# Update samples
-	data.T[start_sample:end_sample] = updated_samples
+        # Update samples
+        data.T[start_sample:end_sample] = updated_samples
 
     # Write output
     wavfile.write(outfile, R, data.T)
